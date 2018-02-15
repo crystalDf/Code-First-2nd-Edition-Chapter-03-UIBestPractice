@@ -5,7 +5,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -30,10 +29,10 @@ public class MainActivity extends AppCompatActivity {
 
         initMsgs();
 
-        mInputText = (EditText) findViewById(R.id.input_text);
-        mSendButton = (Button) findViewById(R.id.send);
+        mInputText = findViewById(R.id.input_text);
+        mSendButton = findViewById(R.id.send);
 
-        mRecyclerView = (RecyclerView) findViewById(R.id.msg_recycler_view);
+        mRecyclerView = findViewById(R.id.msg_recycler_view);
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(linearLayoutManager);
@@ -41,21 +40,18 @@ public class MainActivity extends AppCompatActivity {
         mMsgAdapter = new MsgAdapter(mMsgList);
         mRecyclerView.setAdapter(mMsgAdapter);
 
-        mSendButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        mSendButton.setOnClickListener(v -> {
 
-                String content = mInputText.getText().toString();
+            String content = mInputText.getText().toString();
 
-                if (!TextUtils.isEmpty(content)) {
-                    Msg msg = new Msg(content, Msg.TYPE_SENT);
-                    mMsgList.add(msg);
+            if (!TextUtils.isEmpty(content)) {
+                Msg msg = new Msg(content, Msg.TYPE_SENT);
+                mMsgList.add(msg);
 
-                    mMsgAdapter.notifyItemInserted(mMsgList.size() - 1);
-                    mRecyclerView.scrollToPosition(mMsgList.size() - 1);
+                mMsgAdapter.notifyItemInserted(mMsgList.size() - 1);
+                mRecyclerView.scrollToPosition(mMsgList.size() - 1);
 
-                    mInputText.setText("");
-                }
+                mInputText.setText("");
             }
         });
 

@@ -59,11 +59,11 @@ public class MsgAdapter extends RecyclerView.Adapter<MsgAdapter.ViewHolder> {
         public ViewHolder(View itemView) {
             super(itemView);
 
-            mLeftLinearLayout = (LinearLayout) itemView.findViewById(R.id.left_layout);
-            mRightLinearLayout = (LinearLayout) itemView.findViewById(R.id.right_layout);
+            mLeftLinearLayout = itemView.findViewById(R.id.left_layout);
+            mRightLinearLayout = itemView.findViewById(R.id.right_layout);
 
-            mLeftTextView = (TextView) itemView.findViewById(R.id.left_msg);
-            mRightTextView = (TextView) itemView.findViewById(R.id.right_msg);
+            mLeftTextView = itemView.findViewById(R.id.left_msg);
+            mRightTextView = itemView.findViewById(R.id.right_msg);
         }
     }
 }
